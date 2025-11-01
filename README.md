@@ -56,10 +56,8 @@ Base information & conventions
   - token = <bearer token string>
   Then use `{{baseUrl}}` and `{{token}}` in requests.
 
-Project architecture
---------------------
-Top-level structure (backend + frontend):
-
+🧱 Project Architecture
+------------------------
 SlotSwapper/
 │
 ├── backend/
