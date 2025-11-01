@@ -309,7 +309,7 @@ Important API usage notes
 Contact
 -------
 Developer: Sidharth Singh  
-Email: [your-email@example.com]  
+Email: [tushar15464@gmail.com]  
 Project Name: SlotSwapper (ServiceHive)  
 Role: Full Stack Developer (MERN)  
 Base URL: http://localhost:9000
