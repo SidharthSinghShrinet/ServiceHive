@@ -58,29 +58,34 @@ Base information & conventions
 
 🧱 Project Architecture
 ------------------------
+Top-level structure
 SlotSwapper/
-│
 ├── backend/
-│   ├── models/
-│   │   ├── userModel.js
-│   │   ├── eventModel.js
-│   │   └── requestModel.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── eventRoutes.js
-│   │   └── requestRoutes.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── eventController.js
-│   │   └── requestController.js
-│   ├── middleware/
-│   │   └── authMiddleware.js
 │   ├── config/
-│   │   └── db.js
-│   └── server.js
+│   │   └── db.js                # DB connection setup (mongoose)
+│   ├── controllers/
+│   │   ├── authController.js    # login/register, token issuance
+│   │   ├── eventController.js   # business logic for events (create/update/delete/list)
+│   │   └── requestController.js # swap request lifecycle (create/respond/list)
+│   ├── middleware/
+│   │   └── authMiddleware.js    # JWT validation, sets req.user
+│   ├── models/
+│   │   ├── userModel.js         # User schema (credentials, profile info)
+│   │   ├── eventModel.js        # Event schema (title, startTime, endTime, user/ref, status)
+│   │   └── requestModel.js      # SwapRequest schema (targetEventId, offeredEventId, status, note)
+│   ├── routes/
+│   │   ├── authRoutes.js        # /api/v1/auth/**
+│   │   ├── eventRoutes.js       # /api/v1/events/**
+│   │   └── requestRoutes.js     # /api/v1/swaps/**
+│   ├── services/                # OPTIONAL (recommended): service layer for complex business logic
+│   │   └── swapService.js       # atomic swap operations, conflict resolution helpers
+│   └── server.js                # express app, middleware registration, route registration
 │
 ├── frontend/
+│   ├── public/
 │   ├── src/
+│   │   ├── api/
+│   │   │   └── axiosInstance.js # single Axios instance with baseUrl + auth interceptors
 │   │   ├── components/
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── EventCard.jsx
@@ -96,8 +101,6 @@ SlotSwapper/
 │   │   │   ├── store.js
 │   │   │   ├── eventSlice.js
 │   │   │   └── userSlice.js
-│   │   ├── routes/
-│   │   │   └── AxiosInstance.js
 │   │   ├── App.jsx
 │   │   └── index.js
 │   └── package.json
